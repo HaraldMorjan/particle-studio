@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --bg: #0a0c10;
+  --surface: #12151c;
+  --border: #252a36;
+  --text: #e8eaef;
+  --muted: #8b929e;
+  --accent: #43A047;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text); font-family: var(--font-sans); }
+
+#app { min-height: 100vh; display: flex; flex-direction: column; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  flex: 1;
+}
+@media (min-width: 900px) {
+  .layout { grid-template-columns: 1fr 18rem; }
+}
+
+.canvas-wrap {
+  position: relative;
+  min-height: 50vh;
+  background: radial-gradient(ellipse at 50% 0%, rgba(67, 160, 71, 0.1), transparent 60%), #050608;
+}
+canvas { display: block; width: 100%; height: 100%; cursor: crosshair; }
+
+.panel {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding: 1.25rem;
+  overflow-y: auto;
+}
+@media (min-width: 900px) {
+  .panel { border-top: 0; border-left: 1px solid var(--border); }
+}
+
+.panel h1 { margin: 0; font-size: 1.35rem; font-weight: 700; }
+.panel .sub { margin: 0.35rem 0 1rem; font-size: 0.8rem; color: var(--muted); }
+
+.control { margin-bottom: 1rem; }
+.control label {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+}
+.control output { font-family: var(--font-mono); color: var(--accent); font-size: 0.75rem; }
+.control input[type="range"] { width: 100%; margin-top: 0.35rem; accent-color: var(--accent); }
+.control select {
+  width: 100%; margin-top: 0.35rem; padding: 0.5rem; border-radius: 0.5rem;
+  border: 1px solid var(--border); background: #0a0c10; color: var(--text); font-family: inherit;
+}
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+button {
+  border: 1px solid var(--border); background: #0a0c10; color: var(--text);
+  border-radius: 0.5rem; padding: 0.45rem 0.85rem; font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; font-family: inherit; transition: border-color 0.15s, color 0.15s;
+}
+button:hover { border-color: var(--accent); color: var(--accent); }
+button.primary { background: var(--accent); border-color: var(--accent); color: #0a1a0c; }
+button.primary:hover { filter: brightness(1.08); color: #0a1a0c; }
+
+.preset-row { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1rem; }
+.preset-row button { font-size: 0.7rem; padding: 0.35rem 0.6rem; }
+
+.stats { margin-top: 1rem; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
